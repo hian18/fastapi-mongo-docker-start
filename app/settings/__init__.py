@@ -1,2 +1,3 @@
-from setting import setting
+from .dev import DevSettings
 
+setting = DevSettings()

@@ -6,6 +6,7 @@ class DbSettings:
     port: int
     host: str
     database: str
+    uri: str
 
 
 class DevSettings:
@@ -13,11 +14,5 @@ class DevSettings:
         self.db = DbSettings()
         self.db.host = "localhost"
         self.db.port = 27017
-
-
-class Settings(DevSettings):
-    pass
-
-
-setting = Settings()
-
+        self.db.database = "python"
+        self.db.uri=f'mongodb://{"root"}:{"example"}@{self.db.host}:{self.db.port}/?authSource=admin'

@@ -15,20 +15,20 @@ async def create_item(item: ItemCreate, db=Depends(get_db)):
 
 
 @router.put("/{id}")
-async def update_item(item_id, item: ItemCreate, db=Depends(get_db)):
-    created_item = await crud.update(db, item)
+async def update_item(id, item: ItemCreate, db=Depends(get_db)):
+    created_item = await crud.update(db, id, item)
     return item
 
 
 @router.get("/{id}")
-async def list_items(item_id, db=Depends(get_db)):
-    result = await crud.get_one(db, item_id)
+async def list_items(id, db=Depends(get_db)):
+    result = await crud.get_one(db, id)
     return result
 
 
 @router.delete("/{id}")
-async def delete_item(item_id, db=Depends(get_db)):
-    result = await crud.delete(db, item_id)
+async def delete_item(id, db=Depends(get_db)):
+    result = await crud.delete(db, id)
     return result
 
 

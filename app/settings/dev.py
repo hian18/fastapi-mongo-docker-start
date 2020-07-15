@@ -15,4 +15,4 @@ class DevSettings:
         self.db.host = "localhost"
         self.db.port = 27017
         self.db.database = "python"
-        self.db.uri=f'mongodb://{"root"}:{"example"}@{self.db.host}:{self.db.port}/?authSource=admin'
+        self.db.uri = f'mongodb://{"root"}:{"example"}@{self.db.host}:{self.db.port}/?authSource=admin'

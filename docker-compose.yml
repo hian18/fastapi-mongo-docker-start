@@ -27,7 +27,15 @@ services:
       - mongo-compose-network
     volumes:
       - /home/hian/desenvolvimento/mongo :/data/db
-
+  web-abi:
+    restart: always
+    build: .
+    ports:
+      - "8000:8000"
+    networks:
+      - mongo-compose-network
+    links:
+      - mongo
 networks:
   mongo-compose-network:
     driver: bridge

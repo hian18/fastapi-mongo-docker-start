@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends
-from ..models.item import ItemCreate, Item
+from ..models.item import ItemCreate, ItemOut, ItemInDb
 from ..crud import Crud
 from ..database import get_db
 
 router = APIRouter()
 
-crud = Crud(ItemCreate, Item, Item, "items")
+crud = Crud(ItemCreate, ItemInDb, ItemOut, "items")
 
 
 @router.post("/")

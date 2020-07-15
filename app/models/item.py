@@ -1,8 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional, Any
-from bson import ObjectId
 import uuid
-import datetime
 
 
 class ItemCreate(BaseModel):
@@ -10,7 +7,7 @@ class ItemCreate(BaseModel):
 
 
 class ItemInDb(ItemCreate):
-    id: uuid.UUID
+    ID: uuid.UUID
     name: str
 
 

@@ -7,6 +7,13 @@ X = TypeVar("X")
 
 
 class Crud(Generic[T]):
+    __slots__ = [
+        "model_create",
+        "model_in_db",
+        "model_out",
+        "collection",
+    ]
+
     def __init__(self, model_create: X, model_in_db, model_out: T, collection: str):
 
         self.model_create = model_create

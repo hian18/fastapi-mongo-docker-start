@@ -21,7 +21,7 @@ async def update_item(id, item: ItemCreate, db=Depends(get_db)):
 
 
 @router.get("/{id}")
-async def list_items(id, db=Depends(get_db)):
+async def get_one_item(id, db=Depends(get_db)):
     result = await crud.get_one(db, id)
     return result
 
@@ -33,6 +33,6 @@ async def delete_item(id, db=Depends(get_db)):
 
 
 @router.get("/")
-async def get_all_items(db=Depends(get_db)):
+async def list_items(db=Depends(get_db)):
     result = await crud.get_all(db)
     return result

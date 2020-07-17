@@ -8,7 +8,7 @@ T = TypeVar("T")
 X = TypeVar("X")
 
 
-class Crud(Generic[T]):
+class Crud:
     def __init__(self, model_create: X, model_in_db, model_out: T, collection: str):
 
         self.model_create = model_create

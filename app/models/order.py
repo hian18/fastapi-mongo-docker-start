@@ -28,7 +28,7 @@ class OrderInDb(BaseModel):
 
 class OrderOut(OrderInDb):
 
-    total: int = None
+    total: int = 0
 
     def dict(self, *args, **kwargs):
         if self.total:

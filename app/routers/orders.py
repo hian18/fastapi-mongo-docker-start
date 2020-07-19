@@ -3,6 +3,7 @@ from ..models.order import OrderCreate, OrderInDb, OrderOut
 from ..crud.oder_crud import OrderCrud
 from ..database import get_db
 from typing import List
+from ..auth import get_current_user
 
 router = APIRouter()
 
@@ -10,8 +11,10 @@ crud = OrderCrud(OrderCreate, OrderInDb, OrderOut, "orders")
 
 
 @router.post("/", response_model=OrderOut)
-async def create_order(item: OrderCreate, db=Depends(get_db)):
-    item = await crud.create(db, item)
+async def create_order(
+    item: OrderCreate, db=Depends(get_db), user=Depends(get_current_user)
+):
+    item = await crud.create(db, item, user.ID)
     return item
 
 

@@ -1,9 +1,15 @@
-from fastapi import FastAPI
-from .routers import user, items, orders
+from fastapi import FastAPI, Depends
+from fastapi.security import OAuth2PasswordBearer
+from .routers import user, items, orders, auth
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
-
+app.add_middleware(
+    CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"]
+)
+app.include_router(
+    auth.router, prefix="/login", tags=["auth"],
+)
 app.include_router(
     user.router, prefix="/users", tags=["users"],
 )

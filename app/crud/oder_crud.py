@@ -9,7 +9,7 @@ class OrderCrud(Crud):
     def get_ids_of_items(self, items):
         return [x.item_id for x in items]
 
-    async def create(self, db, documento: OrderCreate, id=None, user=None) -> OrderOut:
+    async def create(self, db, documento: OrderCreate, id=None, user_id=None) -> OrderOut:
         items = []
         async for item in db.items.find(
             {"ID": {"$in": self.get_ids_of_items(documento.items)}}
@@ -28,7 +28,7 @@ class OrderCrud(Crud):
             "ID": id,
             "state": StateEnum.WAIT_PAYMENT.value,
             "create_at": datetime.datetime.now(),
-            "user_id": id,
+            "user_id": user_id,
         }
         order = OrderInDb(**order_dict)
         result = await db.orders.insert_one(order.dict())

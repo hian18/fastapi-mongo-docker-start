@@ -39,3 +39,7 @@ class OrderOut(OrderInDb):
 
     def get_total(self):
         return sum([x.price_cents * x.amount for x in self.items])
+
+    # @property
+    # def total(self):
+    #     return sum([x.price_cents * x.amount for x in self.items])

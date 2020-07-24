@@ -1,5 +1,5 @@
 from .base import Crud
-from ..models.user import UserCreate, UserOut, UserInDb
+from ..models.user import UserCreate, UserInDb, UserOut
 import uuid
 from ..enumerator import StateEnum
 import datetime
@@ -11,6 +11,9 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 class UserCrud(Crud):
+    def __init__(self):
+        super().__init__(UserCreate, UserInDb, UserOut, "users")
+
     async def create(self, db, user_data: UserCreate, user_id: str = None):
 
         hash_pwd = pwd_context.hash(user_data.password)

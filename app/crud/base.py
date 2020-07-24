@@ -45,3 +45,10 @@ class Crud:
     async def update(self, db, id_: str, documento) -> T:
         result = await self.delete(db, id_)
         return await self.create(db, documento, id_)
+
+    async def cursor_to_list(self, cursor):
+        values = []
+        async for x in cursor:
+            values.append(self.model_out(**x))
+        return values
+
